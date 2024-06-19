@@ -21,3 +21,9 @@ CONSTRAINTS = [
     ("F","G"),
 ]
 
+for x, y in CONSTRAINTS:
+    problem.addConstraint(lambda x,y: x != y, (x, y))
+
+
+for solution in problem.getSolutions():
+    print(solution)
