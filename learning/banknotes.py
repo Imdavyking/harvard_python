@@ -24,14 +24,11 @@ with open('banknotes.csv') as f:
             'label': 1 if row[4] == '0' else 0
         })
 
-evidence = [row['evidence'] for row in data]
-labels = [row['label'] for row in data]
+evidence = np.array([row['evidence'] for row in data])
+labels = np.array([row['label'] for row in data])
 
 X_training,X_testing,y_training,y_testing = train_test_split(evidence,labels,test_size=0.4)
-X_training = np.array(X_training)
-X_testing = np.array(X_testing)
-y_training = np.array(y_training)
-y_testing = np.array(y_testing)
+
 model = tf.keras.models.Sequential()
 # Add a hidden layer with 8 units with ReLU activation
 model.add(tf.keras.layers.Dense(8, input_shape=(4,),activation='relu'))
